@@ -1,0 +1,89 @@
+#Alt - i to disable skhd for typing
+#:: type : @
+#alt - i ; type
+#type < alt - i ; default
+
+#alt - n : alacritty
+alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty
+
+#  Switch between main and typing mode. typing mode disables space as alt
+ctrl - 0x1E: '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --show-current-profile-name | grep main && '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'typing' || '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'main'
+
+# Move to previous space
+alt - f : yabai -m space --focus next
+# Move to next space 
+alt - d : yabai -m space --focus prev
+# Move to most recent space
+alt - tab : yabai -m space --focus recent
+
+# Move to next display
+alt - p : yabai -m display --focus recent
+
+# Move window to prev space and follow focus
+alt - 0x21 : yabai -m window --space prev && \
+					yabai -m space --focus prev
+# Move window to next space and follow focus
+alt - 0x1E : yabai -m window --space next && \
+					yabai -m space --focus next
+# Navigation
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Cycle through windows
+alt - i : yabai -m window --focus prev
+alt - o : yabai -m window --focus next
+
+# Moving windows
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+# Resize windows
+alt + ctrl - h : yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0
+alt + ctrl - j : yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20
+alt + ctrl - k : yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20
+alt + ctrl - l : yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0
+
+# Rotate
+alt - r : yabai -m space --rotate 90
+# toggle window fullscreen zoom
+alt - g : yabai -m window --toggle zoom-fullscreen
+
+# toggle whether the focused window should be tiled (only on bsp spaces)
+alt - q : yabai -m window --toggle float
+# toggle whether the focused window should be shown on all spaces
+alt - w : yabai -m window --toggle sticky
+# keep window on top
+alt - e : yabai -m window --toggle topmost
+# equalise window sizes
+alt - t :  yabai -m space --balance
+
+# move to bottom, add transparency - for vim notetaking - not working
+#alt - 0x21 : yabai -m window --toggle float; \
+#				yabai -m window --move abs:06:570; \
+#				yabai -m window --resize abs:1268:230; \
+#				yabai -m window --toggle opacity; \
+#				yabai -m window --toggle topmost; \
+
+# float window and move to center
+#alt - m : yabai -m window --toggle float; \
+#			yabai -m window --move abs:250:100; \
+#			yabai -m window --resize abs:800:600;
+
+# Move space left alt - + ctrl [
+alt + ctrl - 0x21 : yabai -m space --move prev
+# Move space right alt + ctrl - ]
+alt + ctrl - 0x1E : yabai -m space --move next
+
+## Close space alt - \
+alt - 0x2A: yabai -m space --destroy
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+# alt - '
+alt - 0x27 : yabai -m space --create && \
+				   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+				   yabai -m window --space "${index}" && \
+				   yabai -m space --focus "${index}"
