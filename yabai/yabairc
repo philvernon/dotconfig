@@ -49,6 +49,10 @@ yabai -m config window_gap                   02
 # spacing for simple-bar
 yabai -m config external_bar all:30:0:0:0
 
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
 echo "yabai configuration loaded.."
 
 
