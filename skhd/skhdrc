@@ -5,6 +5,7 @@
 
 #alt - n : alacritty
 alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty
+alt - m : wezterm
 
 #  Switch between main and typing mode. typing mode disables space as alt
 ctrl - 0x1E: '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --show-current-profile-name | grep main && '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'typing' || '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'main'
@@ -21,15 +22,15 @@ alt - p : yabai -m display --focus recent
 
 # Move window to prev space and follow focus
 alt - 0x21 : yabai -m window --space prev && \
-					yabai -m space --focus prev
+        yabai -m space --focus prev
 # Move window to next space and follow focus
 alt - 0x1E : yabai -m window --space next && \
-					yabai -m space --focus next
+        yabai -m space --focus next
 # Navigation
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
+alt - l : yabai -m window --focus east || yabai -m window --focus recent
 
 # Cycle through windows
 alt - i : yabai -m window --focus prev
@@ -87,3 +88,8 @@ alt - 0x27 : yabai -m space --create && \
 				   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
 				   yabai -m window --space "${index}" && \
 				   yabai -m space --focus "${index}"
+
+
+.blacklist [
+    "Blender"
+]
