@@ -3,9 +3,27 @@
 #alt - i ; type
 #type < alt - i ; default
 
+# yabai -m query --windows | jq 'map(select(.title))'
+
 #alt - n : alacritty
 alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty
-alt - m : wezterm
+alt - m : ~/.config/scripts/alacritty-scratchpad.sh
+
+#/Applications/Alacritty.app/Contents/MacOS/alacritty -e ~/.config/scripts/console-yabai.sh -t "popup"
+
+
+
+        # yabai -m window --toggle float && \
+        # yabai -m window --resize abs:900:300
+        
+        
+
+# -e yabai -m window --toggle float \
+        # | yabai -m window --toggle border \
+        # | yabai -m window --move abs:270:450 \
+        # | yabai -m window --resize abs:900:300 \
+
+# 1440 900
 
 #  Switch between main and typing mode. typing mode disables space as alt
 ctrl - 0x1E: '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --show-current-profile-name | grep main && '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'typing' || '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'main'
@@ -60,7 +78,7 @@ alt - w : yabai -m window --toggle sticky
 # keep window on top
 alt - e : yabai -m window --toggle topmost
 # equalise window sizes
-alt - t :  yabai -m space --balance
+# alt - t :  yabai -m space --balance
 
 # move to bottom, add transparency - for vim notetaking - not working
 #alt - 0x21 : yabai -m window --toggle float; \
@@ -74,7 +92,7 @@ alt - t :  yabai -m space --balance
 #			yabai -m window --move abs:250:100; \
 #			yabai -m window --resize abs:800:600;
 
-# Move space left alt - + ctrl [
+# Move space left alt + ctrl [
 alt + ctrl - 0x21 : yabai -m space --move prev
 # Move space right alt + ctrl - ]
 alt + ctrl - 0x1E : yabai -m space --move next
@@ -88,7 +106,6 @@ alt - 0x27 : yabai -m space --create && \
 				   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
 				   yabai -m window --space "${index}" && \
 				   yabai -m space --focus "${index}"
-
 
 .blacklist [
     "Blender"
