@@ -8,6 +8,7 @@
 #alt - n : alacritty
 alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty
 alt - m : ~/.config/scripts/alacritty-scratchpad.sh
+alt - c : open -na "Google Chrome" --args --new-window
 
 #/Applications/Alacritty.app/Contents/MacOS/alacritty -e ~/.config/scripts/console-yabai.sh -t "popup"
 

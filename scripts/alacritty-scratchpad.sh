@@ -10,7 +10,7 @@ then
         skhd -k "cmd - h"
         yabai -m window --focus recent;
     else
-        yabai -m window "$WINDOWID" --move abs:270:450;
+        yabai -m window "$WINDOWID" --move abs:300:450;
         yabai -m window --focus $WINDOWID;
     fi
 else 
