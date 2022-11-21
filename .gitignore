@@ -25,6 +25,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.luarc.json
 plugin/
 plugins/
 # Folders I don't want
@@ -45,4 +46,7 @@ lvim.old/
 htop/
 btop/
 gh/
+cmus/
+simple-update-notifier/
+/alacritty/catppuccin/
 

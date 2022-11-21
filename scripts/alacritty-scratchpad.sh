@@ -8,7 +8,7 @@ then
     if [ $ISFOCUSED = true ];
     then
         skhd -k "cmd - h"
-        yabai -m window --focus recent;
+        yabai -m window --focus first;
     else
         yabai -m window "$WINDOWID" --move abs:300:450;
         yabai -m window --focus $WINDOWID;
