@@ -6,9 +6,13 @@
 # yabai -m query --windows | jq 'map(select(.title))'
 
 #alt - n : alacritty
-alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty
+alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e tmux
+#export __CFBundleIdentifier='org.alacritty'
 alt - m : ~/.config/scripts/alacritty-scratchpad.sh
-alt - c : open -na "Google Chrome" --args --new-window
+# alt - c : open -na "Google Chrome" --args --new-window
+alt - c : open /Applications/Google\ Chrome.app
+alt - e : skhd -k "ctrl - b"
+alt - t : ~/.config/scripts/alacritty-scratchpad.sh sbuild
 
 #/Applications/Alacritty.app/Contents/MacOS/alacritty -e ~/.config/scripts/console-yabai.sh -t "popup"
 
@@ -28,6 +32,13 @@ alt - c : open -na "Google Chrome" --args --new-window
 
 #  Switch between main and typing mode. typing mode disables space as alt
 ctrl - 0x1E: '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --show-current-profile-name | grep main && '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'typing' || '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'main'
+
+# Move to space number
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+# alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
 
 # Move to previous space
 alt - f : yabai -m space --focus next
@@ -53,7 +64,7 @@ alt - l : yabai -m window --focus east || yabai -m window --focus recent
 
 # Cycle through windows
 alt - i : yabai -m window --focus prev
-alt - o : yabai -m window --focus next
+alt - p : yabai -m window --focus next
 
 # Moving windows
 shift + alt - h : yabai -m window --warp west
@@ -77,7 +88,7 @@ alt - q : yabai -m window --toggle float
 # toggle whether the focused window should be shown on all spaces
 alt - w : yabai -m window --toggle sticky
 # keep window on top
-alt - e : yabai -m window --toggle topmost
+# alt - e : yabai -m window --toggle topmost
 # equalise window sizes
 # alt - t :  yabai -m space --balance
 

@@ -22,7 +22,7 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^zathura$" manage=on
 yabai -m rule --add app="^Books$" manage=on
-yabai -m rule --add app="^alacritty$" manage=on
+yabai -m rule --add app="^alacritty$" manage=on border=on
 
 # global settings
 yabai -m config mouse_follows_focus          off
@@ -34,7 +34,7 @@ yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
-yabai -m config window_border                on
+yabai -m config window_border                off
 yabai -m config window_border_width          1
 yabai -m config active_window_border_color   0xff4c7b96
 yabai -m config normal_window_border_color   0xff5b568c
@@ -48,19 +48,28 @@ yabai -m config mouse_drop_action            swap
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  01
-yabai -m config bottom_padding				 06
-yabai -m config left_padding                 06
-yabai -m config right_padding                06
+yabai -m config top_padding                  02
+yabai -m config bottom_padding				       02
+yabai -m config left_padding                 02
+yabai -m config right_padding                02
 yabai -m config window_gap                   02
 
 # spacing for simple-bar
-yabai -m config external_bar all:30:0:0:0
+yabai -m config external_bar all:28:0:0:0
+
+yabai -m space 1 --label web
+yabai -m space 2 --label code
+yabai -m space 3 --label misc
+yabai -m space 4 --label music
 
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
+# sketchybar events (.yabairc)
+#yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+#yabai -m signal -add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
+#yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+
 echo "yabai configuration loaded.."
 
 skhd -c $HOME/.config/skhd/skhdrc
-
