@@ -25,6 +25,7 @@ import:
 # available, otherwise `xterm-256color` is used.
 
 window:
+  # opacity: 0.0
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -721,7 +722,8 @@ alt_send_esc: true
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - { key: I, mods: Control, chars: "\x1b[73;5u" }
+  # - { key: I, mods: Control, chars: "\x1b[73;5u" }
+  # - { key: I, mods: Control, chars: "\x1b[105;5u" }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -832,7 +834,7 @@ key_bindings:
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
   - { key: Key3, mods: Alt, chars: "#" }
-  # - {key: I, mods: Control, chars: "\x1b[105;5u"}
+  - { key: I, mods: Control, chars: "\x1b[105;5u" }
 #debug:
 # Display the time it takes to redraw each frame.
 #render_timer: false

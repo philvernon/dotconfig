@@ -1,3 +1,6 @@
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off
 yabai -m rule --add app='^Preferences$' manage=off
 yabai -m rule --add app='^Godot$' manage=off
@@ -61,9 +64,6 @@ yabai -m space 1 --label web
 yabai -m space 2 --label code
 yabai -m space 3 --label misc
 yabai -m space 4 --label music
-
-sudo yabai --load-sa
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # sketchybar events (.yabairc)
 #yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
