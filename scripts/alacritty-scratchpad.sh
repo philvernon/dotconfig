@@ -11,7 +11,7 @@ then
     yabai -m window --focus first;
   else
     yabai -m window --focus $WINDOWID;
-    yabai -m window "$WINDOWID" --move abs:70:575;
+    # yabai -m window "$WINDOWID" --move abs:70:575;
     if [[ $1 == "sbuild" ]];
     then
       if [[ ! $(tmux ls | grep sbuild) ]];

@@ -432,8 +432,6 @@ shell:
 # directory of the parent process will be used.
 #working_directory: None
 
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
 
 #mouse:
 # Click settings
@@ -835,6 +833,7 @@ key_bindings:
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
   - { key: Key3, mods: Alt, chars: "#" }
   - { key: I, mods: Control, chars: "\x1b[105;5u" }
+
 #debug:
 # Display the time it takes to redraw each frame.
 #render_timer: false

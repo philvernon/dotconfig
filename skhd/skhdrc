@@ -11,6 +11,7 @@ alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e tmux
 alt - m : ~/.config/scripts/alacritty-scratchpad.sh
 # alt - c : open -na "Google Chrome" --args --new-window
 alt - c : open /Applications/Google\ Chrome.app
+alt + shift - c : open -na "Google Chrome"
 alt - e : skhd -k "ctrl - b"
 alt - t : ~/.config/scripts/alacritty-scratchpad.sh sbuild
 
@@ -48,7 +49,14 @@ alt - d : yabai -m space --focus prev
 alt - tab : yabai -m space --focus recent
 
 # Move to next display
-alt - p : yabai -m display --focus recent
+alt - p : yabai -m display --focus next || yabai -m display --focus prev
+
+ctrl + alt - p : (yabai -m window --display next || yabai -m window --display prev) && \
+          yabai -m window --focus recent
+
+ctrl + alt - c : yabai -m space --padding abs:300:100:300:300
+
+ctrl + alt + shift - c : yabai -m space --padding abs:02:02:02:02
 
 # Move window to prev space and follow focus
 alt - 0x21 : yabai -m window --space prev && \
@@ -63,8 +71,8 @@ alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east || yabai -m window --focus recent
 
 # Cycle through windows
-alt - i : yabai -m window --focus prev
-alt - p : yabai -m window --focus next
+alt - u : yabai -m window --focus prev
+alt - i : yabai -m window --focus next
 
 # Moving windows
 shift + alt - h : yabai -m window --warp west
@@ -115,7 +123,7 @@ alt - 0x2A: yabai -m space --destroy
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 # alt - '
 alt - 0x27 : yabai -m space --create && \
-				   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+				   index="$(yabai -m query --spaces --display | jq 'map(select(.))[-1].index')" && \
 				   yabai -m window --space "${index}" && \
 				   yabai -m space --focus "${index}"
 

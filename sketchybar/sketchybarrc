@@ -140,7 +140,10 @@ sketchybar --add   space          space_template left	\
 
   SPACE_NAMES=("web" "code" "misc" "music")
   SPACE_ICONS=("" "" "" "")
-  # --add space space.$sid left
+
+  SECOND_SPACE_NAMES=("extra", "notes")
+  SECOND_SPACE_ICONS=("", "")
+
 
   for i in "${!SPACE_NAMES[@]}"
   do
@@ -154,7 +157,23 @@ sketchybar --add   space          space_template left	\
       drawing=on	\
       script="$PLUGIN_DIR/space.sh"	\
       click_script="yabai -m space --focus $sid"
-    done
+  done
+
+  for i in "${!SECOND_SPACE_NAMES[@]}"
+  do
+    sid=$(($i+5))
+    sketchybar --clone space.$sid space_template	\
+      --set space.$sid associated_space=$sid	\
+      associated_display=2  \
+      icon=${SPACE_ICONS[i]}	\
+      label=${SPACES_ICONS[i]}	\
+      label.width=38	\
+      position=left	\
+      drawing=on	\
+      script="$PLUGIN_DIR/space.sh"	\
+      click_script="yabai -m space --focus $sid"
+  done
+
 
                               # icon.highlight_color=$GREEN	\
                               # icon.background.color=$GREEN	\
@@ -235,6 +254,10 @@ sketchybar --add item space_separator left	\
     background.color=$SURFACE \
     label.color=$MAGENTA \
     script="$PLUGIN_DIR/task.sh"	\
+    \
+    --add item disk_space right                         \
+    --set disk_space    script="$PLUGIN_DIR/disk_space.sh"    \
+    update_freq=10 \
     \
     --add item wifi right                         \
     --set wifi    script="$PLUGIN_DIR/wifi.sh"    \
