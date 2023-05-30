@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "user": {
-      "user_id": "@kratoze:psychlone.xyz",
-      "url": "https://psychlone.xyz"
-    }
-  },
-  "default_profile": "user"
-}
