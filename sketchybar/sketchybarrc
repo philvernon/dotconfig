@@ -139,7 +139,7 @@ sketchybar --add   space          space_template left	\
   drawing=off	\
 
   SPACE_NAMES=("web" "code" "misc" "music")
-  SPACE_ICONS=("" "" "" "")
+  SPACE_ICONS=("" "" "" "󰝚")
 
   SECOND_SPACE_NAMES=("extra", "notes")
   SECOND_SPACE_ICONS=("", "")
@@ -275,7 +275,7 @@ sketchybar --add item space_separator left	\
     --set btc script="~/.config/sketchybar/plugins/btc.sh"  \
     \
     --add item eth right \
-    --set eth icon=ﲹ \
+    --set eth icon=󰞻 \
     icon.font="$FONT:Bold:10.0" \
     label.font="$FONT:Bold:10.0" \
     --set eth update_freq=20 \
