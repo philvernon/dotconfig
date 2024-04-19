@@ -98,17 +98,17 @@ sketchybar --add item           label_template left	\
   background.padding_right=0	\
   drawing=off
 
-sketchybar --add item           bonnie left	\
-  --set label_template icon.drawing=off	\
-  label.font="$FONT:Black:12.0"	\
-  label.padding_right=5	\
-  label.drawing=off \
-  background.drawing=on \
-  background.padding_left=$SEGMENT_SPACING	\
-  background.padding_right=0	\
-  background.image="/Users/philipvernon/Pictures/bonnie_icon_white_cropped.png"  \
-  background.image.scale=0.035 \
-  drawing=on
+# sketchybar --add item           bonnie left	\
+#   --set label_template icon.drawing=off	\
+#   label.font="$FONT:Black:12.0"	\
+#   label.padding_right=5	\
+#   label.drawing=off \
+#   background.drawing=on \
+#   background.padding_left=$SEGMENT_SPACING	\
+#   background.padding_right=0	\
+#   background.image="/Users/philipvernon/Pictures/bonnie_icon_white_cropped.png"  \
+#   background.image.scale=0.035 \
+#   drawing=on
 
 sketchybar --add   space          space_template left	\
   --set   space_template icon.highlight_color=0xff9dd274	\
@@ -139,7 +139,7 @@ sketchybar --add   space          space_template left	\
   drawing=off	\
 
   SPACE_NAMES=("web" "code" "misc" "music")
-  SPACE_ICONS=("" "" "" "󰝚")
+  SPACE_ICONS=("" "" "󰀘" "󰝚")
 
   SECOND_SPACE_NAMES=("extra", "notes")
   SECOND_SPACE_ICONS=("", "")
@@ -266,20 +266,17 @@ sketchybar --add item space_separator left	\
     --set battery script="$PLUGIN_DIR/battery.sh"	\
     update_freq=1	\
     --subscribe battery system_woke	\
-    \
-    --add item btc right \
-    --set btc icon= \
-    icon.font="$FONT:Bold:10.0" \
-    label.font="$FONT:Bold:10.0" \
-    --set btc update_freq=20 \
-    --set btc script="~/.config/sketchybar/plugins/btc.sh"  \
-    \
-    --add item eth right \
-    --set eth icon=󰞻 \
-    icon.font="$FONT:Bold:10.0" \
-    label.font="$FONT:Bold:10.0" \
-    --set eth update_freq=20 \
-    --set eth script="~/.config/sketchybar/plugins/eth.sh"
+
+    media=(
+        script="$PLUGIN_DIR/media.sh"
+        updates=on
+        )
+
+    sketchybar --add item media right \
+      --set media "${media[@]}" \
+        background.padding_right=$SEGMENT_SPACING	\
+      --subscribe media media_change
+
 
 
 ##### Finalizing Setup #####

@@ -10,8 +10,8 @@ alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e tmux
 #export __CFBundleIdentifier='org.alacritty'
 alt - m : ~/.config/scripts/alacritty-scratchpad.sh
 # alt - c : open -na "Google Chrome" --args --new-window
-alt - c : open /Applications/Google\ Chrome.app
-alt + shift - c : open -na "Google Chrome"
+alt - c : open /Applications/Firefox\ Developer\ Edition.app &>/dev/null &
+alt + shift - c : open -na "Firefox Developer Edition" &>/dev/null &
 alt - e : skhd -k "ctrl - b"
 alt - t : ~/.config/scripts/alacritty-scratchpad.sh sbuild
 
@@ -92,7 +92,8 @@ alt - r : yabai -m space --rotate 90
 alt - g : yabai -m window --toggle zoom-fullscreen
 
 # toggle whether the focused window should be tiled (only on bsp spaces)
-alt - q : yabai -m window --toggle float
+alt - q : yabai -m window --toggle float && \
+          yabai -m window --sub-layer below
 # toggle whether the focused window should be shown on all spaces
 alt - w : yabai -m window --toggle sticky
 # keep window on top
