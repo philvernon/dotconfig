@@ -15,6 +15,10 @@ alt + shift - c : open -na "Firefox Developer Edition" &>/dev/null &
 alt - e : skhd -k "ctrl - b"
 alt - t : ~/.config/scripts/alacritty-scratchpad.sh sbuild
 
+# Scratchpads
+ctrl + alt - s : yabai -m window --toggle spotify || open  -a Spotify
+ctrl + alt - d : yabai -m window --toggle teams || open  -a open -a Microsoft\ Teams\ \(work\ or\ school\)
+
 #/Applications/Alacritty.app/Contents/MacOS/alacritty -e ~/.config/scripts/console-yabai.sh -t "popup"
 
 
