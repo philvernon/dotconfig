@@ -243,18 +243,6 @@ sketchybar --add item space_separator left	\
     background.border_width=1 \
     script="$PLUGIN_DIR/clock.sh"	\
     \
-    --add item task right	\
-    --set task    update_freq=10	\
-    updates=on  \
-    label.width=60  \
-    background.height=29  \
-    label.align=center  \
-    icon.drawing=off  \
-    background.drawing=on \
-    background.color=$SURFACE \
-    label.color=$MAGENTA \
-    script="$PLUGIN_DIR/task.sh"	\
-    \
     --add item disk_space right                         \
     --set disk_space    script="$PLUGIN_DIR/disk_space.sh"    \
     update_freq=10 \
