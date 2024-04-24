@@ -36,7 +36,7 @@ ctrl + alt - d : yabai -m window --toggle teams || open  -a open -a Microsoft\ T
 # 1440 900
 
 #  Switch between main and typing mode. typing mode disables space as alt
-ctrl - 0x1E: '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --show-current-profile-name | grep main && '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'typing' || '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'main'
+ctrl - 0: '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --show-current-profile-name | grep main && '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'typing' || '/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'main'
 
 # Move to space number
 alt - 1 : yabai -m space --focus 1
