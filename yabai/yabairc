@@ -11,7 +11,7 @@ yabai -m rule --add app=".*" sub-layer=below
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off 
 yabai -m rule --add app='^Preferences$' manage=off
 # yabai -m rule --add app='^Godot$' manage=off
-yabai -m rule --add title='.*\(DEBUG\)$' manage=off sub-layer=above
+yabai -m rule --add title='.*\(DEBUG\)$' manage=off # sub-layer=above
 yabai -m rule --add app="^Activity Monitor$" sticky=on sub-layer=above manage=off
 # yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Spotify$" scratchpad='spotify' grid=11:11:1:1:9:9
@@ -23,6 +23,7 @@ yabai -m rule --add app='^Microsoft Teams$' manage=off scratchpad='teams' grid=1
 # yabai -m rule --add app='^Microsoft Teams \(work or school\)$' scratchpad='teams' grid=110:11:1:1:9:9
 yabai -m rule --add app='^Microsoft Outlook$' manage=off
 yabai -m rule --add app="^Calculator$" sticky=on sub-layer=above manage=off
+yabai -m rule --add app='^qemu-system-aarch64$' manage=on # sub-layer=above
 
 yabai -m rule --add app='^StartClient$' manage=off
 yabai -m rule --add app='^LÖVE$' manage=off
