@@ -56,4 +56,6 @@ fish/
 matrix/
 tmux/credentials.json
 tmux/store/
+github-copilot/
+zed/
 

@@ -29,6 +29,7 @@ yabai -m rule --add app='^StartClient$' manage=off
 yabai -m rule --add app='^LÖVE$' manage=off
 yabai -m rule --add app='^love$' manage=off
 yabai -m rule --add app='^Steam$' manage=off
+yabai -m rule --add app='^Ueli$' manage=off
 
 yabai -m rule --add app='^iTerm2$'
 yabai -m rule --add app='^Übersicht$'
@@ -86,4 +87,4 @@ yabai -m space 4 --label music
 
 echo "yabai configuration loaded.."
 
-skhd -c $HOME/.config/skhd/skhdrc
+# skhd -c $HOME/.config/skhd/skhdrc
