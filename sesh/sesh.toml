@@ -30,3 +30,8 @@ path = "~"
 startup_command = """
 """
 
+[[session]]
+name = "new-llm"
+path = "~/dev/llm"
+startup_command = "bash -lc 'read -rp \"New folder name: \" name; mkdir -p \"$name\"; cd \"$name\"; exec \"$SHELL\"'"
+

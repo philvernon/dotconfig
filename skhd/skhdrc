@@ -82,8 +82,8 @@ alt - l : ~/.config/skhd/tmux_yabai_nav.sh R
 
 
 # Cycle through windows
-alt - u : yabai -m window --focus prev
-alt - i : yabai -m window --focus next
+# alt - u : yabai -m window --focus prev
+# alt - i : yabai -m window --focus next
 
 # Moving windows
 shift + alt - h : yabai -m window --warp west
