@@ -35,6 +35,7 @@ program = "/bin/zsh"
 [window]
 decorations = "buttonless"
 dynamic_padding = false
+option_as_alt = 'Both'
 
 [window.padding]
 x = 10

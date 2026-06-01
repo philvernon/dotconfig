@@ -1,0 +1,32 @@
+sort_order = ["tmux", "tmuxinator", "config", "zoxide"]
+
+[[session]]
+name = "Home"
+path = "~/"
+
+[[session]]
+name = "tmux-sesh"
+path = "~/.config/sesh"
+startup_command = "nvim ./sesh.toml"
+
+[[session]]
+name = "lab"
+path = "~/"
+startup_command = "ssh phil@192.168.1.220"
+
+[[session]]
+name = "notes"
+path = "~/documents/notes"
+startup_command = "nvim ."
+
+[[session]]
+name = "New"
+path = "~/"
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "fresh"
+path = "~"
+startup_command = """
+"""
+
