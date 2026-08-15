@@ -2,8 +2,6 @@
 
 direction="$1"
 
-echo "ITS WORKING"
-
 # If this pane is SSH, send Meta+direction through to the remote side.
 pane_cmd="$(tmux display-message -p '#{pane_current_command}')"
 
