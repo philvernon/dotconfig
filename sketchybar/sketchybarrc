@@ -248,12 +248,18 @@ sketchybar --add item space_separator left	\
     update_freq=10 \
     \
     --add item wifi right                         \
-    --set wifi    script="$PLUGIN_DIR/wifi.sh"    \
+    --set wifi script="$PLUGIN_DIR/wifi.sh"    \
     update_freq=5 \
+		\
     --add item battery right	\
     --set battery script="$PLUGIN_DIR/battery.sh"	\
     update_freq=1	\
     --subscribe battery system_woke	\
+		\
+		--add item whatsapp right \
+		--set whatsapp script="$PLUGIN_DIR/whatsapp.sh" \
+		updates=on \
+		update_freq=2 \
 
     media=(
         script="$PLUGIN_DIR/media.sh"
