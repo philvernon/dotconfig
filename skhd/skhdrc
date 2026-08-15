@@ -9,7 +9,7 @@
 alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e tmux
 #export __CFBundleIdentifier='org.alacritty'
 alt - m : ~/.config/scripts/alacritty-scratchpad.sh
-# alt - c : open -na "Google Chrome" --args --new-window
+alt - c : open -a "Firefox"
 alt - c : open /Applications/Firefox\ Developer\ Edition.app &>/dev/null &
 alt + shift - c : open -na "Firefox Developer Edition" &>/dev/null &
 alt - e : skhd -k "ctrl - b"
