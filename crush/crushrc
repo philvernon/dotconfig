@@ -1,0 +1,7 @@
+provider add llamacpp \
+	--name "vernp" \
+	--type llamacpp \
+  --base-url "http://vernp:8080" \
+
+mcp add plan-scratch --command node --args /Users/phil/dev/plan-md-mcp/dist/server.js \
+  --timeout 10 --disabled-tools some-tool-name --env NODE_ENV production

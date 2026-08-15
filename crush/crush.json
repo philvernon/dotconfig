@@ -1,9 +1,0 @@
-{
-  "providers": {
-    "llamacpp": {
-      "name": "llama.cpp",
-      "base_url": "http://vernp:8080",
-      "type": "llamacpp"
-    }
-  }
-}
