@@ -9,6 +9,11 @@ chars = "\u001B[105;5u"
 key = "I"
 mods = "Control"
 
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b[13;2u"
+
 [general]
 import = ["/Users/phil/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
 

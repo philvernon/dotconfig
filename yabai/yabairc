@@ -19,8 +19,7 @@ yabai -m rule --add app="^Preview$" manage=off
 yabai -m rule --add app="^Transmission$" manage=off
 yabai -m rule --add app='^VLC media player$' manage=off
 yabai -m rule --add app='^Microsoft Teams$' manage=off scratchpad='teams' grid=11:11:1:1:9:9
-# yabai -m rule --add app='^Microsoft Teams \(work or school\)$' manage=off
-# yabai -m rule --add app='^Microsoft Teams \(work or school\)$' scratchpad='teams' grid=110:11:1:1:9:9
+yabai -m rule --add app='WhatsApp' manage=off grid=11:11:1:1:9:9
 yabai -m rule --add app='^Microsoft Outlook$' manage=off
 yabai -m rule --add app="^Calculator$" sticky=on sub-layer=above manage=off
 yabai -m rule --add app='^qemu-system-aarch64$' manage=on # sub-layer=above
