@@ -5,3 +5,4 @@ provider add llamacpp \
 
 mcp add plan-scratch --command node --args /Users/phil/dev/plan-md-mcp/dist/server.js \
   --timeout 10 --disabled-tools some-tool-name --env NODE_ENV production
+

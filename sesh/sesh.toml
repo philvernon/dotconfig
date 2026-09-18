@@ -1,4 +1,5 @@
 sort_order = ["tmux", "tmuxinator", "config", "zoxide"]
+dir_length = 2
 
 [[session]]
 name = "Home"
