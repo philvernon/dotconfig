@@ -36,3 +36,4 @@ config/.config/opencode/.env
 config/.config/tmux/tmux-client-*.log
 config/.config/tmux/store/
 config/.config/tmux/credentials.json
+config/.config/tmux/plugins/
