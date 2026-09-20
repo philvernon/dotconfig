@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+path="$PWD"
+
+git_root=$(git -C "$path" rev-parse --show-toplevel 2>/dev/null)
+
+if [[ -n "$git_root" ]]; then
+  name="${git_root:t}"
+  path="$git_root"
+else
+  name="${path:t}"
+fi
+
+[[ -z "$name" ]] && name="home"
+
+exec tmux new-session -A -s "$name" -c "$path"
