@@ -2,10 +2,8 @@
 # OPTIONS
 # --------------------------------------------------
 
-export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
 export GOPATH="$HOME/go"
-export PNPM_HOME="$HOME/Library/pnpm"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
@@ -13,25 +11,15 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS='--color=bg+:-1'
 
-zstyle ':omz:completion' rehash false
-
 # --------------------------------------------------
 # PATHS
 # --------------------------------------------------
 
 typeset -U path PATH
 
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-
 path=(
   "/opt/homebrew/bin"
   "/opt/homebrew/sbin"
-  # "/opt/homebrew/opt/postgresql@15/bin"
-  # "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
-  # "/usr/local/opt/llvm/bin"
-  # "/usr/local/bin"
-  # "$ANDROID_HOME/tools"
-  # "$ANDROID_HOME/tools/bin"
   "$ANDROID_HOME/emulator"
   "$ANDROID_HOME/platform-tools"
   "$HOME/.cargo/bin"
@@ -45,25 +33,19 @@ path=(
 export PATH
 
 # --------------------------------------------------
-# oh-my-zsh
+# Plugins
 # --------------------------------------------------
-plugins=(
-    git
-    brew
-    docker
-    docker-compose
-    extract
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    zsh-autopair
-    fzf-tab
-		rust
-)
 
-fpath+=("${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/src")
+plugins_file="$HOME/.zsh_plugins"
 
-ZSH_DISABLE_COMPFIX=true
-source "$ZSH/oh-my-zsh.sh"
+if [[ ! "${plugins_file}.zsh" -nt "${plugins_file}.txt" ]]; then
+  (
+    source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+    antidote bundle < "${plugins_file}.txt" > "${plugins_file}.zsh"
+  )
+fi
+
+source "${plugins_file}.zsh"
 
 # --------------------------------------------------
 # Completion
