@@ -27,37 +27,6 @@ Temporary Items
 
 .luarc.json
 plugin/
-plugins/
-# Folders I don't want
-.mono/
-coc/
-configstore/
-fvim/
-gtk-2.0/
-iterm2/
-lvim/
-musikcube/
-neofetch/
-thefuck/
-yarn/
-karabiner/automatic_backups
-kitty/
-lvim.old/
-htop/
-btop/
-gh/
-cmus/
-simple-update-notifier/
-StardewValley/
-raycast/
-spicetify/
-fish/
-matrix/
-tmux/credentials.json
-tmux/store/
-github-copilot/
-zed/
-plan.md
 
 config/.config/beets/discogs_token.json
 config/.config/beets/library.db
