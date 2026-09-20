@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # --------------------------------------------------
 # OPTIONS
 # --------------------------------------------------
@@ -125,30 +132,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# function tmux-sesh() {
-# 	sesh connect "$(
-#   sesh list --icons | fzf-tmux -p 80%,70% \
-#     --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
-#     --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
-#                 --layout reverse \
-#     --bind 'tab:down,btab:up' \
-#     --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
-#     --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
-#     --bind 'ctrl-g:change-prompt(⚙️   )+reload(sesh list -c --icons)' \
-#     --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
-#     --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-#     --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
-#     --preview-window 'right:55%' \
-#     --preview 'sesh preview {}'
-#         )"
-# }
-
-# focus_window() {
-#     SPACE_NAME=$(yabai -m query --spaces --space | jq -r ".label")
-#     WINDOW_ID=$(yabai -m query --windows --space | jq -r ".[] | select (.app=${SPACE_NAME}).id")
-#     yabai -m window --focus "${WINDOW_ID}"
-# }
-
 # --------------------------------------------------
 # Keybinds
 # --------------------------------------------------
@@ -159,8 +142,7 @@ bindkey -s "^F" 'nf^M'
 # Tools
 # --------------------------------------------------
 
-eval "$(mise activate zsh)"
-eval "$(starship init zsh)"
+eval "$(mise activate zsh --shims)"
 eval "$(zoxide init zsh)"
 
 # pnpm
@@ -176,3 +158,6 @@ export PATH="/Users/phil/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # Hermes Agent — ensure ~/.local/bin is on PATH
 export PATH="$HOME/.local/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
