@@ -6,7 +6,6 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
 export GOPATH="$HOME/go"
 export PNPM_HOME="$HOME/Library/pnpm"
-export LYNX_CFG="$HOME/.config/lynx/lynx.cfg"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
@@ -14,9 +13,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS='--color=bg+:-1'
 
-zstyle ':omz:plugins:nvm' lazy yes
-
-unsetopt BG_NICE
+zstyle ':omz:completion' rehash false
 
 # --------------------------------------------------
 # PATHS
@@ -24,24 +21,23 @@ unsetopt BG_NICE
 
 typeset -U path PATH
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 path=(
   "/opt/homebrew/bin"
   "/opt/homebrew/sbin"
-  "/opt/homebrew/opt/postgresql@15/bin"
-  "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
-  "/usr/local/opt/llvm/bin"
-  "/usr/local/bin"
+  # "/opt/homebrew/opt/postgresql@15/bin"
+  # "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+  # "/usr/local/opt/llvm/bin"
+  # "/usr/local/bin"
+  # "$ANDROID_HOME/tools"
+  # "$ANDROID_HOME/tools/bin"
   "$ANDROID_HOME/emulator"
-  "$ANDROID_HOME/tools"
-  "$ANDROID_HOME/tools/bin"
   "$ANDROID_HOME/platform-tools"
   "$HOME/.cargo/bin"
   "$HOME/.local/bin"
   "$GOPATH/bin"
   "$HOME/bin"
-  "$HOME/.spicetify"
   "$PNPM_HOME"
   "./node_modules/.bin"
   $path
@@ -54,10 +50,6 @@ export PATH
 plugins=(
     git
     brew
-    node
-    macos
-    npm
-    golang
     docker
     docker-compose
     extract
@@ -65,21 +57,20 @@ plugins=(
     zsh-autosuggestions
     zsh-autopair
     fzf-tab
-		nvm
 		rust
 )
 
 fpath+=("${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/src")
-autoload -U compinit && compinit
 
+ZSH_DISABLE_COMPFIX=true
 source "$ZSH/oh-my-zsh.sh"
 
 # --------------------------------------------------
 # Completion
 # --------------------------------------------------
 
-if [[ -f "$HOME/.zsh/completions/_npm" ]]; then
-  source "$HOME/.zsh/completions/_npm"
+if [[ -f "$HOME/.zsh/completions/_pnpm" ]]; then
+  source "$HOME/.zsh/completions/_pnpm"
 fi
 
 # disable sort when completing `git checkout`
@@ -90,7 +81,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' prefix ''
 
-# zstyle -d ':completion:*' format
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 
@@ -111,13 +101,13 @@ alias tree="tree -I node_modules"
 alias ev="exit"
 alias nrd="npm run dev"
 alias pbc="pwd | pbcopy"
-alias love="/Applications/love.app/Contents/MacOS/love"
 alias tmus="tmux"
 # FOR NVIM CONFIG REWRITE
 alias vimn="NVIM_APPNAME=neovim-rewrite nvim"
+alias pe="cd ~/.pi"
 
 # Go to config
-alias vc="cd $HOME/.config"
+alias vc="cd ~/.config"
 alias vcn="cd $HOME/.config/nvim"
 alias cz="nvim $HOME/.zshrc"
 
@@ -145,11 +135,37 @@ nf() {
 	fi
 }
 
-focus_window() {
-    SPACE_NAME=$(yabai -m query --spaces --space | jq -r ".label")
-    WINDOW_ID=$(yabai -m query --windows --space | jq -r ".[] | select (.app=${SPACE_NAME}).id")
-    yabai -m window --focus "${WINDOW_ID}"
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
 }
+
+# function tmux-sesh() {
+# 	sesh connect "$(
+#   sesh list --icons | fzf-tmux -p 80%,70% \
+#     --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+#     --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+#                 --layout reverse \
+#     --bind 'tab:down,btab:up' \
+#     --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+#     --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+#     --bind 'ctrl-g:change-prompt(⚙️   )+reload(sesh list -c --icons)' \
+#     --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+#     --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+#     --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+#     --preview-window 'right:55%' \
+#     --preview 'sesh preview {}'
+#         )"
+# }
+
+# focus_window() {
+#     SPACE_NAME=$(yabai -m query --spaces --space | jq -r ".label")
+#     WINDOW_ID=$(yabai -m query --windows --space | jq -r ".[] | select (.app=${SPACE_NAME}).id")
+#     yabai -m window --focus "${WINDOW_ID}"
+# }
 
 # --------------------------------------------------
 # Keybinds
@@ -157,10 +173,24 @@ focus_window() {
 
 bindkey -s "^F" 'nf^M'
 
-
 # --------------------------------------------------
 # Tools
 # --------------------------------------------------
 
+eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/phil/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+# Added by Antigravity IDE
+export PATH="/Users/phil/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
