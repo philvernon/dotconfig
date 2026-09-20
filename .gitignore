@@ -60,3 +60,11 @@ github-copilot/
 zed/
 plan.md
 
+config/.config/beets/discogs_token.json
+config/.config/beets/library.db
+config/.config/beets/log.txt
+config/.config/beets/state.pickle
+config/.config/opencode/.env
+config/.config/tmux/tmux-client-*.log
+config/.config/tmux/store/
+config/.config/tmux/credentials.json
