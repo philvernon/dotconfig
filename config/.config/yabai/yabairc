@@ -2,18 +2,14 @@
 
 SHELL=/bin/sh
 
-# source ~/.config/yabai/yabai-methods.sh
-
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
 yabai -m rule --add app=".*" sub-layer=below
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off 
 yabai -m rule --add app='^Preferences$' manage=off
-# yabai -m rule --add app='^Godot$' manage=off
 yabai -m rule --add title='.*\(DEBUG\)$' manage=off # sub-layer=above
 yabai -m rule --add app="^Activity Monitor$" sticky=on sub-layer=above manage=off
-# yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Spotify$" scratchpad='spotify' grid=11:11:1:1:9:9
 yabai -m rule --add app="^Preview$" manage=off
 yabai -m rule --add app="^Transmission$" manage=off
@@ -73,17 +69,4 @@ yabai -m space 2 --label code
 yabai -m space 3 --label misc
 yabai -m space 4 --label music
 
-# focus window after active space changes
-# yabai -m signal --add event=space_changed action="focus_window"
-
-# focus window after active display changes
-# yabai -m signal --add event=display_changed action="focus_window"
-
-# sketchybar events (.yabairc)
-#yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-#yabai -m signal -add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
-#yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
-
 echo "yabai configuration loaded.."
-
-# skhd -c $HOME/.config/skhd/skhdrc
