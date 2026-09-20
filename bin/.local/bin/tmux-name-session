@@ -5,12 +5,20 @@ dir="$PWD"
 git_root=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null)
 
 if [[ -n "$git_root" ]]; then
-  name="${git_root:t}"
+  base="${git_root:t}"
   dir="$git_root"
 else
-  name="${dir:t}"
+  base="${dir:t}"
 fi
 
-[[ -z "$name" ]] && name="home"
+[[ -z "$base" ]] && base="home"
 
-exec tmux new-session -A -s "$name" -c "$dir"
+name="$base"
+n=2
+
+while tmux has-session -t "=$name" 2>/dev/null; do
+  name="${base}-${n}"
+  ((n++))
+done
+
+exec tmux new-session -s "$name" -c "$dir"

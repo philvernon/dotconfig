@@ -1,4 +1,4 @@
-alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e tmux
+alt - n : /Applications/Alacritty.app/Contents/MacOS/alacritty -e $HOME/.local/bin/tmux-name-session
 alt - c : open -a "Firefox"
 alt - c : open /Applications/Firefox\ Developer\ Edition.app &>/dev/null &
 alt + shift - c : open -na "Firefox Developer Edition" &>/dev/null &
