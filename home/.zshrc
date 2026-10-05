@@ -159,5 +159,8 @@ export PATH="/Users/phil/.antigravity-ide/antigravity-ide/bin:$PATH"
 # Hermes Agent — ensure ~/.local/bin is on PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+alias pic='PI_CODING_AGENT_DIR="$HOME/dev-trash/pi-config-new/agent" pi'
+alias pif='PI_CODING_AGENT_DIR="$HOME/dev-trash/piconfig/agent" pi'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
