@@ -18,6 +18,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS='--color=bg+:-1'
 
+eval "$(zoxide init zsh)"
 # --------------------------------------------------
 # PATHS
 # --------------------------------------------------
@@ -143,7 +144,6 @@ bindkey -s "^F" 'nf^M'
 # --------------------------------------------------
 
 eval "$(mise activate zsh --shims)"
-eval "$(zoxide init zsh)"
 
 # pnpm
 export PNPM_HOME="/Users/phil/Library/pnpm"
