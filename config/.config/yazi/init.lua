@@ -16,7 +16,5 @@ end
 
 if os.getenv("YAZI_NVIM_ID") then
 	rt.mgr.ratio = { 0, 3, 4 }
-	ya.emit("hidden", { "hide" })
-	print(th)
 	th.app.overall = { bg = "#181825" }
 end

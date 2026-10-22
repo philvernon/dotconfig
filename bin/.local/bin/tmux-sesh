@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-sesh connect "$(
+selection="$(
   sesh list --icons | fzf \
     --no-sort --ansi \
     --border-label ' sesh ' \
     --prompt '⚡  ' \
-    --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+    --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find ^r remote' \
     --layout reverse \
     --bind 'tab:down,btab:up' \
     --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
@@ -13,7 +13,14 @@ sesh connect "$(
     --bind 'ctrl-g:change-prompt(⚙️   )+reload(sesh list -c --icons)' \
     --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
     --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-    --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
-    --preview-window 'right:55%' \
-    --preview 'sesh preview {}'
-)"
+    --bind 'ctrl-r:change-prompt(remote > )+reload(~/.local/bin/tmux-remote-sessions --list | sed "s/^/remote /")' \
+    --bind 'ctrl-d:execute[case {1} in remote) ;; *) tmux kill-session -t {2..} ;; esac]+change-prompt(⚡  )+reload(sesh list --icons)' \
+    --preview-window 'right:55%:+999999:follow' \
+    --preview 'case {1} in remote) ~/.local/bin/tmux-remote-sessions --preview agent-desktop {2} ;; *) sesh preview {} ;; esac'
+)" || exit 0
+
+if [[ "$selection" == remote\ * ]]; then
+  exec "${0:A:h}/tmux-remote-sessions" --connect agent-desktop "${${selection#remote }%% *}"
+fi
+
+[[ -n "$selection" ]] && sesh connect "$selection"

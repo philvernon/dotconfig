@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+self="$(cd -- "$(dirname -- "$0")" && pwd)/$(basename -- "$0")"
+mode=${1:-}
+case "$mode" in
+  --list|--preview|--connect) shift ;;
+  *) mode=--pick ;;
+esac
+host=${1:-agent-desktop}
+[[ "$host" =~ ^[a-zA-Z0-9_][a-zA-Z0-9_.@-]*$ ]] || { printf 'Invalid SSH host: %s\n' "$host" >&2; exit 1; }
+ssh_options=(-o BatchMode=yes -o ConnectTimeout=5)
+
+case "$mode" in
+  --list)
+    exec ssh "${ssh_options[@]}" -T "$host" \
+      "tmux list-sessions -F '#{session_id} #{session_name} (#{session_windows} windows, #{session_attached} attached)'"
+    ;;
+  --preview|--connect)
+    id=${2:-}
+    [[ "$id" =~ ^\$[0-9]+$ ]] || { printf 'Invalid tmux session ID\n' >&2; exit 1; }
+    if [[ "$mode" == --preview ]]; then
+      exec ssh "${ssh_options[@]}" -T "$host" \
+        "while tmux has-session -t '$id' 2>/dev/null; do printf '\033[2J\033[H'; tmux capture-pane -e -p -t '$id' -S -80 || break; sleep 1; done"
+    fi
+
+    printf -v attach 'exec ssh -t -R /tmp/nav.sock:/tmp/nav.sock %q %q' \
+      "$host" "TMUX_REMOTE_NAV=1 tmux attach-session -t '$id'"
+    if [[ -n "${TMUX:-}" ]]; then
+      local_session="remote-${host//[^a-zA-Z0-9_-]/_}-${id#\$}"
+      if ! tmux has-session -t "=$local_session" 2>/dev/null; then
+        tmux new-session -d -s "$local_session" -n "$host" "$attach"
+      fi
+      tmux switch-client -t "=$local_session"
+    else
+      exec ssh -t -R /tmp/nav.sock:/tmp/nav.sock "$host" \
+        "TMUX_REMOTE_NAV=1 tmux attach-session -t '$id'"
+    fi
+    ;;
+  --pick)
+    printf -v list_command '%q --list %q' "$self" "$host"
+    printf -v preview_command '%q --preview %q {1}' "$self" "$host"
+    selection=$("$self" --list "$host" | fzf \
+      --no-sort --ansi --layout reverse \
+      --border-label " $host sessions " \
+      --prompt 'remote > ' \
+      --header 'Enter attach | Ctrl-R refresh | Esc cancel | live preview (1s)' \
+      --with-nth '2..' \
+      --bind 'tab:down,btab:up' \
+      --bind "ctrl-r:reload($list_command)" \
+      --preview-window 'right:65%:+999999:follow' \
+      --preview "$preview_command") || exit 0
+    [[ -n "$selection" ]] || exit 0
+    exec "$self" --connect "$host" "${selection%% *}"
+    ;;
+esac

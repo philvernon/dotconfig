@@ -1,13 +1,21 @@
 #!/usr/bin/env zsh
 
-sesh connect "$(
+selection="$(
   sesh list -t --icons | fzf \
     --no-sort --ansi \
     --border-label ' sessions ' \
     --prompt '🪟  ' \
-    --header '  open tmux sessions only' \
+    --header '  ^t local tmux sessions | ^r remote' \
     --layout reverse \
     --bind 'tab:down,btab:up' \
-    --preview-window 'right:55%' \
-    --preview 'sesh preview {}'
-)"
+    --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+    --bind 'ctrl-r:change-prompt(remote > )+reload(~/.local/bin/tmux-remote-sessions --list | sed "s/^/remote /")' \
+    --preview-window 'right:55%:+999999:follow' \
+    --preview 'case {1} in remote) ~/.local/bin/tmux-remote-sessions --preview agent-desktop {2} ;; *) sesh preview {} ;; esac'
+)" || exit 0
+
+if [[ "$selection" == remote\ * ]]; then
+  exec "${0:A:h}/tmux-remote-sessions" --connect agent-desktop "${${selection#remote }%% *}"
+fi
+
+[[ -n "$selection" ]] && sesh connect "$selection"

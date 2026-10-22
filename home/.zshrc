@@ -97,7 +97,7 @@ alias vimn="NVIM_APPNAME=neovim-rewrite nvim"
 alias pe="cd ~/.pi"
 
 # Go to config
-alias vc="cd ~/.config"
+alias vc="cd ~/dotfiles-stow/config/.config"
 alias vcn="cd $HOME/.config/nvim"
 alias cz="nvim $HOME/.zshrc"
 
@@ -156,10 +156,7 @@ esac
 # Added by Antigravity IDE
 export PATH="/Users/phil/.antigravity-ide/antigravity-ide/bin:$PATH"
 
-# Hermes Agent — ensure ~/.local/bin is on PATH
-export PATH="$HOME/.local/bin:$PATH"
-
-alias pic='PI_CODING_AGENT_DIR="$HOME/dev-trash/pi-config-new/agent" pi'
+alias pic='PI_CODING_AGENT_DIR="$HOME/dev-trash/pi-config-old/agent" pi'
 alias pif='PI_CODING_AGENT_DIR="$HOME/dev-trash/piconfig/agent" pi'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
