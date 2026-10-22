@@ -30,6 +30,7 @@ unset_alt  = { fg = "red", bg = "reset" }
 sep_left  = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
+
 [icon]
 globs = []
 dirs = []
